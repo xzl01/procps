@@ -335,11 +335,6 @@ static int ReadSetting(const char *restrict const name)
 		return -1;
 	}
 
-	/* used to display the output */
-	outname = xstrdup(name);
-	/* change / to . */
-	slashdot(outname, '/', '.');
-
 	/* used to open the file */
 	tmpname = xmalloc(strlen(name) + strlen(PROC_PATH) + 2);
 	strcpy(tmpname, PROC_PATH);
@@ -565,12 +560,14 @@ static int WriteSetting(
     slashdot(dotted_key, '/', '.');
 
     if ((ts.st_mode & S_IWUSR) == 0) {
+        errno = EPERM;
         xwarn(_("setting key \"%s\""), dotted_key);
 	free(dotted_key);
         return rc;
     }
 
     if (S_ISDIR(ts.st_mode)) {
+        errno = EISDIR;
         xwarn(_("setting key \"%s\""), dotted_key);
 	free(dotted_key);
         return rc;
@@ -612,7 +609,7 @@ static int WriteSetting(
     }
     if ((rc == EXIT_SUCCESS && !Quiet) || DryRun) {
         if (NameOnly) {
-            printf("%s\n", value);
+            printf("%s\n", dotted_key);
         } else {
             if (PrintName) {
                 printf("%s = %s\n", dotted_key, value);

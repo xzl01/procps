@@ -669,8 +669,8 @@ int main(int argc, char *argv[]){
 
   init_output(); /* must be between parser and output */
 
-  lists_and_needs();
   finalize_stacks();
+  lists_and_needs();
 
   if(forest_type || sort_list) fancy_spew(); /* sort or forest */
   else simple_spew(); /* no sort, no forest */

@@ -16,7 +16,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH SYSCTL 8 2023\-01\-16 procps\-ng "Administration système"
+.TH SYSCTL 8 2023\-08\-19 procps\-ng "Administration système"
 .SH NOM
 sysctl \- Configurer les paramètres du noyau à chaud
 .SH SYNOPSIS
@@ -54,8 +54,8 @@ commandes disposant d'un complètement automatique programmable.
 Empêcher l'affichage des valeurs dans la sortie standard.
 .TP 
 \fB\-w\fP, \fB\-\-write\fP
-Utiliser cette option seulement si tous les arguments prescrivent la
-définition d'une clef.
+Force all arguments to be write arguments and print an error if they cannot
+be parsed this way.
 .TP 
 \fB\-p\fP[\fIfichier\fP], \fB\-\-load\fP[\fB=\fP\fIfichier\fP]
 Load in \fBsysctl\fP settings from the file specified or \fI/etc/sysctl.conf\fP if
@@ -164,7 +164,7 @@ echo 256 > /proc/sys/net/ipv6/neigh/eth0/base_reachable_time
 .br
 \fI/etc/sysctl.conf\fP
 .SH "VOIR AUSSI"
-\fBsysctl.conf\fP(5), \fBregex\fP(7)
+\fBproc\fP(5), \fBsysctl.conf\fP(5), \fBregex\fP(7)
 .SH AUTEUR
 George Staikos <\fIstaikos@wnedorg\fP>
 .SH BOGUES

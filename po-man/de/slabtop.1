@@ -98,6 +98,11 @@ Die Statistik\-Kopfzeile von \fBslabtop\fP verfolgt die Byte\-Anzahl der
 genutzten Slabs, bezieht sich aber nicht auf den tatsächlichen physischen
 Speicher. Das »Slab«\-Feld in der Datei \fI/proc/meminfo\fP enthält
 Informationen über den physischen Slab\-Speicher.
+.PP
+The \fBCACHE SIZE\fP column is not accurate, it's the upper limit of memory
+used by specific slab. When system using slub (most common case) is under
+high memory pressure, there are slab order fallbacks, which means "pages per
+slab" is not constant and may decrease.
 .SH AUTOREN
 Geschrieben von Chris Rivera und Robert Love.
 .PP

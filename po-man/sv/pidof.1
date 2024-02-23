@@ -20,7 +20,7 @@
 pidof — hitta process\-ID för ett körande program
 .SH SYNOPSIS
 \fBpidof\fP [\fB\-s\fP] [\fB\-c\fP] [\fB\-q\fP] [\fB\-w\fP] [\fB\-x\fP] [\fB\-o\fP
-\fIskippapid[,skippapid…]…\fP] [\fB\-S\fP \fIseparator\fP] \fIprogram\fP
+\fIskippapid[,skippapid…]…\fP] \fB\-t\fP [\fB\-S\fP \fIseparator\fP] \fIprogram\fP
 \fI[\fP\fBprogram…\fP\fI]\fP
 .SH BESKRIVNING
 \fBPidof\fP hittar process\-id:t (pid:ar) för de namngivna programmen.  Det
@@ -45,6 +45,8 @@ Säger till \fBpidof\fP att utesluta processer med det process\-id:t.  Den
 speciella processen \fB%PPID\fP kan användas för att namnge föräldraprocessen
 till \fBpidof\fP\-programmet, med andra ord det anropande skalet eller
 skalskriptet.
+.IP \fB\-t\fP
+Visa alla tråd\-id:n istället för pid:n.
 .IP "\fB\-S\fP \fIseparator\fP"
 Använd \fIseparator\fP som separator placerad mellan pid:er.  Använd endast när
 mer än en pid skrivs för programmet.  Flaggan \fB\-d\fP är ett alias för denna

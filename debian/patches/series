@@ -1,4 +1,7 @@
 remove_strtod_tests
+ps_no_path_max
 watch_hostname_max_define
 disable_sched_test
 uptime_test
+makefile_w_link_systemd
+pmap_test

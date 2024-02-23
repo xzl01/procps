@@ -3,7 +3,6 @@
 debian/sysctl.conf etc
 debian/99-protect-links.conf usr/lib/sysctl.d
 debian/README.sysctl etc/sysctl.d
-bbin/* bin
-bin/* usr/bin
-sbin/sysctl sbin
+usr/bin
+usr/sbin/sysctl usr/sbin
 usr/share/locale

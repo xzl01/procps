@@ -59,7 +59,7 @@ memory statistics and data for other users requires root privileges
 .
 .\" Document /////////////////////////////////////////////////////////////
 .\" ----------------------------------------------------------------------
-.TH TOP 1 "January 2023" "procps-ng" "User Commands"
+.TH TOP 1 "August 2023" "procps-ng" "User Commands"
 .\" ----------------------------------------------------------------------
 .nh
 
@@ -527,6 +527,9 @@ Depending on your kernel version, the \fBst\fR field may not be shown.
     \fBst\fR : time stolen from this vm by the hypervisor
 .fi
 
+The `sy' value above also reflects the time running a virtual \*(Pu
+for guest operating systems, including those that have been niced.
+
 Beyond the first tasks/threads line, there are alternate \*(PU display
 modes available via the 4-way `t' \*(CT.
 They show an abbreviated summary consisting of these elements:
@@ -537,8 +540,8 @@ They show an abbreviated summary consisting of these elements:
 .fi
 
 Where: a) is the `user' (us + ni) percentage; b) is the `system'
-(sy + hi + si) percentage; c) is the total percentage; and d) is
-one of two visual graphs of those representations.
+(sy + hi + si + guests) percentage; c) is the total percentage;
+and d) is one of two visual graphs of those representations.
 Such graphs also reflect separate `user' and `system' portions.
 
 If the `4' \*(CT is used to yield more than two cpus per line,
@@ -554,16 +557,22 @@ and `4' \*(CTs.
 .\" ----------------------------------------------------------------------
 This portion consists of two lines which may express values in kibibytes (KiB)
 through exbibytes (EiB) depending on the scaling factor enforced
-with the `E' \*(CI.
+with the `E' \*(CI. The /proc/meminfo source fields are shown in parenthesis.
 
-As a default, Line 1 reflects \*(MP, classified as:
+Line 1 reflects \*(MP, classified as:
 .nf
-    total, free, used and buff/cache
+    total          ( MemTotal )
+    free           ( MemFree )
+    used           ( MemTotal - MemAvailable )
+    buff/cache     ( Buffers + Cached + SReclaimable )
 .fi
 
 Line 2 reflects mostly \*(MV, classified as:
 .nf
-    total, free, used and avail (which is \*(MP)
+    total          ( SwapTotal )
+    free           ( SwapFree )
+    used           ( SwapTotal - SwapFree )
+    avail          ( MemAvailable, which is \*(MP )
 .fi
 
 The \fBavail\fR number on line 2 is an estimation of \*(MP available for
@@ -1726,19 +1735,18 @@ not present, this \*(CT will have no effect.
 \ \ \ \fB!\fR\ \ :\fICombine-Cpus-Mode\fR toggle \fR
 This \*(CT is intended for massively parallel SMP environments where,
 even with the `4' \*(CT, not all processors can be displayed.
-With each press of `!' the number of additional \*(Pus combined is
-doubled thus reducing the total number of \*(Pu lines displayed.
+With each press of `!' the number of \*(Pus combined is doubled thus
+reducing the total number of \*(Pu lines displayed.
 
-For example, with the first press of `!' one additional \*(Pu will be
-combined and displayed as `0-1, 2-3, ...' instead of the normal
-`%Cpu0, %Cpu1, %Cpu2, %Cpu3, ...'.
-With a second `!' \*(CT two additional \*(Pus are combined and shown
-as `0-2, 3-5, ...'.
-Then the third `!' press, combining four additional \*(Pus, shows
-as `0-4, 5-9, ...', etc.
+For example, with the first press of `!' two \*(Pus will be combined and
+displayed as `0-1, 2-3, ...' instead of the normal `%Cpu0, %Cpu1, %Cpu2,
+%Cpu3, ...'. With a second `!' \*(CT four \*(Pus are combined and shown
+as `0-3, 4-7, ...'.
+Then the third `!' press, combining eight \*(Pus, shows as `0-7, 8-15, ...',
+etc.
 
 Such progression continues until individual \*(Pus are again displayed
-and impacts both the `1' and `4' toggles (one or muliple columns).
+and impacts both the `1' and `4' toggles (one or multiple columns).
 Use the `=' command to exit \fBCombine Cpus\fR mode.
 
 .PP

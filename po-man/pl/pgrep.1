@@ -49,10 +49,10 @@ wypisze procesy, których właścicielem jest \fBroot\fP LUB \fBdaemon\fP.
 .TQ
 \fB\-\-signal\fP \fIsygnał\fP
 Defines the signal to send to each matched process.  Either the numeric or
-the symbolic signal name can be used. In \fBpgrep\fP or \fBpidwait\fP mode this
-has no effect unless used in conjunction with \fB\-\-require\-handler\fP to filter
-to processes with a userspace signal handler present for a particular
-signal.
+the symbolic signal name can be used. In \fBpgrep\fP or \fBpidwait\fP mode only
+the long option can be used and has no effect unless used in conjunction
+with \fB\-\-require\-handler\fP to filter to processes with a userspace signal
+handler present for a particular signal.
 
 .TP 
 \fB\-c\fP, \fB\-\-count\fP

@@ -16,7 +16,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH SYSCTL 8 "16. Januar 2023" procps\-ng System\-Administration
+.TH SYSCTL 8 "19. August 2023" procps\-ng System\-Administration
 .SH BEZEICHNUNG
 sysctl \- Kernelparameter zur Laufzeit konfigurieren
 .SH ÜBERSICHT
@@ -57,7 +57,8 @@ bewirkt, dass die gesetzten Werte nicht in die Standardausgabe geschrieben
 werden.
 .TP 
 \fB\-w\fP, \fB\-\-write\fP
-gibt an, dass alle Argumente einen zu setzenden Schlüssel vorschreiben.
+erzwingt, dass alle Argumente Schreibargumente sind und gibt einen Fehler
+aus, wenn die Argumente nicht nach dieser Vorgabe ausgewertet werden können.
 .TP 
 \fB\-p\fP[\fIDATEI\fP], \fB\-\-load\fP[=\fIDATEI\fP]
 lädt \fBsysctl\fP\-Einstellungen aus der angegebenen Datei oder aus
@@ -169,7 +170,7 @@ echo 256 > /proc/sys/net/ipv6/neigh/eth0/base_reachable_time
 .br
 \fI/etc/sysctl.conf\fP
 .SH "SIEHE AUCH"
-\fBsysctl.conf\fP(5)  \fBregex\fP(7)
+\fBproc\fP(5), \fBsysctl.conf\fP(5), \fBregex\fP(7)
 .SH AUTOR
 .UR staikos@0wned.org
 George Staikos

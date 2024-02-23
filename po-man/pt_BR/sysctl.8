@@ -16,7 +16,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH SYSCTL 8 2023\-01\-16 procps\-ng "Administração do sistema"
+.TH SYSCTL 8 2023\-08\-19 procps\-ng "Administração do sistema"
 .SH NOME
 sysctl \- configura parâmetros do kernel em tempo de execução
 .SH SINOPSE
@@ -56,8 +56,8 @@ Use essa opção para não exibir os valores definidos para stdout (saída
 padrão).
 .TP 
 \fB\-w\fP, \fB\-\-write\fP
-Use essa opção quando todos os argumentos prescrevem um chave a ser
-definida.
+Force all arguments to be write arguments and print an error if they cannot
+be parsed this way.
 .TP 
 \fB\-p\fP[\fIARQUIVO\fP], \fB\-\-load\fP[=\fIARQUIVO\fP]
 Load in \fBsysctl\fP settings from the file specified or \fI/etc/sysctl.conf\fP if
@@ -166,7 +166,7 @@ echo 256 > /proc/sys/net/ipv6/neigh/eth0/base_reachable_time
 .br
 \fI/etc/sysctl.conf\fP
 .SH "VEJA TAMBÉM"
-\fBsysctl.conf\fP(5)  \fBregex\fP(7)
+\fBproc\fP(5), \fBsysctl.conf\fP(5), \fBregex\fP(7)
 .SH AUTOR
 .UR staikos@0wned.org
 George Staikos

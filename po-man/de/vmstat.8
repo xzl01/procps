@@ -130,12 +130,12 @@ cs: Anzahl der Kontext\-Switches pro Sekunde.
 .SS CPU
 Dies sind Prozentsätze der gesamten CPU\-Zeit.
 .nf
-us: Time spent running non\-kernel code.  (user time, including nice time)
-sy: Time spent running kernel code.  (system time)
-id: Time spent idle.  Prior to Linux 2.5.41, this includes IO\-wait time.
-wa: Time spent waiting for IO.  Prior to Linux 2.5.41, included in idle.
-st: Time stolen from a virtual machine.  Prior to Linux 2.6.11, unknown.
-gu: Time spent running KVM guest code (guest time, including guest nice).
+us: Verbrauchte Zeit für Nicht\-Kernel\-Code (Benutzerzeit, einschließlich Nice\-Zeit)
+sy: Verbrauchte Zeit für Kernel\-Code (Systemzeit)
+id: Verbrauchte Zeit für Leerlauf. Vor Linux 2.5.41 bezieht dies die E/A\-Wartezeit ein.
+wa: Verbrauchte Zeit für Warten auf E/A. Vor Linux 2.5.41 bezieht dies die Leerlaufzeit ein.
+st: Von einer virtuellen Maschine abgezweigte Zeit. Vor Linux 2.6.11 ist diese unbekannt.
+gu: Verbrauchte Zeit für KVM\-Gastcode (Gastzeit, einschließlich Gast\-Nice).
 .fi
 .SH "FELDBESCHREIBUNG FÜR PlattenMODUS"
 .SS Lesevorgänge
@@ -166,8 +166,8 @@ requested writes: Gesamtzahl der für diese Partition
                   angeforderten Schreibvorgänge
 .fi
 .SH "FELDBESCHREIBUNG FÜR SLAB\-MODUS"
-Slab mode shows statistics per slab, for more information about this
-information see \fBslabinfo\fP(5)
+Der Slab\-Modus zeigt Statistiken pro Slab an; weitere Informationen hierzu
+finden Sie in \fBslabinfo\fP(5).
 .PP
 .nf
 cache: Zwischenspeichername
@@ -177,10 +177,11 @@ size: Größe jedes Objekts
 pages: Anzahl der Seiten mit mindestens einem aktiven Objekt
 .fi
 .SH ANMERKUNGEN
-\fBvmstat\fP requires read access to files under \fI/proc\fP. The \fB\-m\fP requires
-read access to \fI/proc/slabinfo\fP which may not be available to standard
-users.  Mount options for \fI/proc\fP such as \fIsubset=pid\fP may also impact
-what is visible.
+\fBvmstat\fP benötigt Lesezugriff auf Dateien unterhalb von \fI/proc\fP. Die
+Option \fB\-m\fP erfordert Lesezugriff auf \fI/proc/slabinfo\fP, was bei
+Standardbenutzern unter Umständen nicht der Fall ist. Auch die
+Einhängeoptionen für \fI/proc\fP, wie beispielsweise \fIsubset=PID\fP, könnten
+sich darauf auswirken, was tatsächlich angezeigt wird.
 .SH "SIEHE AUCH"
 \fBfree\fP(1), \fBiostat\fP(1), \fBmpstat\fP(1), \fBps\fP(1), \fBsar\fP(1), \fBtop\fP(1),
 \fBslabinfo\fP(5)

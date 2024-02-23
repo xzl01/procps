@@ -94,6 +94,12 @@ kernel 2.2 no futuro.
 The \fBslabtop\fP statistic header is tracking how many bytes of slabs are
 being used and is not a measure of physical memory.  The 'Slab' field in the
 \fI/proc/meminfo\fP file is tracking information about used slab physical
+memory.
+.PP
+The \fBCACHE SIZE\fP column is not accurate, it's the upper limit of memory
+used by specific slab. When system using slub (most common case) is under
+high memory pressure, there are slab order fallbacks, which means "pages per
+slab" is not constant and may decrease.
 .SH AUTORES
 Escrito porChris Rivera e Robert Love.
 .PP

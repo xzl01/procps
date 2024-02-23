@@ -16,7 +16,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH FREE 1 "16. Januar 2023" procps\-ng "Dienstprogramme für Benutzer"
+.TH FREE 1 "2. Mai 2023" procps\-ng "Dienstprogramme für Benutzer"
 .SH BEZEICHNUNG
 free \- Anzeige des freien und belegten Speichers
 .SH ÜBERSICHT
@@ -28,9 +28,9 @@ Zwischenspeicher an. Die Informationen werden durch Auslesen von
 /proc/meminfo ermittelt. Folgende Spalten werden angezeigt:
 .TP 
 \fBgesamt\fP
-Total usable memory (MemTotal and SwapTotal in /proc/meminfo). This includes
-the physical and swap memory minus a few reserved bits and kernel binary
-code.
+Gesamter nutzbarer Speicher (MemTotal und SwapTotal in /proc/meminfo). Dies
+umfasst den physischen und den Auslagerungsspeicher, abzüglich reservierter
+Bits und Kernel\-Binärcode.
 .TP 
 \fBbenutzt\fP
 Benutzter oder nicht verfügbarer Speicher (errechnet durch \fBgesamt\fP minus
@@ -123,6 +123,10 @@ zeigt das Ergebnis \fIAnzahl\fP mal an. Erfordert die Option \fB\-s\fP.
 .TP 
 \fB\-l\fP, \fB\-\-lohi\fP
 zeigt detailliert die Belegung von »low memory« und »high memory« an.
+.TP 
+\fB\-L\fP, \fB\-\-line\fP
+zeigt die Ausgabe in einer einzelnen Zeile an; wird oft mit der Option \fB\-s\fP
+verwendet, um Speicherstatistiken wiederholt anzuzeigen.
 .TP 
 \fB\-s\fP, \fB\-\-seconds\fP \fIIntervall\fP
 Fortlaufende Aktualisierung der Anzeige nach \fIIntervall\fP Sekunden. Sie

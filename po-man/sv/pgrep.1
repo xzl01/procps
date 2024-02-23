@@ -51,9 +51,10 @@ standard ut.
 \fB\-\-signal\fP \fIsignal\fP
 Definierar signalen att skicka till varje matchad process. Antingen det
 numeriska eller det symboliska signalnamnet kan användas. I \fBpgrep\fP\- eller
-\fBpidwait\fP\-läge har detta ingen effekt om det inte används tilsammans med
-filtret \fB\-\-require\-handler\fP för att filtrera ut processer där det finns en
-signalhanterare i användarrymden för en viss signal.
+\fBpidwait\fP\-läge endast kan flaggan long användas och har ingen effekt om det
+inte används tilsammans med filtret \fB\-\-require\-handler\fP för att filtrera ut
+processer där det finns en signalhanterare i användarrymden för en viss
+signal.
 
 .TP 
 \fB\-c\fP, \fB\-\-count\fP

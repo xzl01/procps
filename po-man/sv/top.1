@@ -63,7 +63,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH TOP 1 "Januari 2023" procps\-ng Användarkommandon
+.TH TOP 1 "Augusti 2023" procps\-ng Användarkommandon
 .\" ----------------------------------------------------------------------
 .nh
 
@@ -520,6 +520,9 @@ på kärnversionen visas kanske inte fältet \fBst\fP.
     \fBst\fP : tid stulen från denna vm av hypervisorn
 .fi
 
+Värdet ”sy” ovan avspeglar även tiden som används till att köra en virtuell
+\*(Pu för gästoperativsystem, inklusive dem med ett nice\-värde.
+
 Utöver den första uppgifts\-/trådraden finns det alternativa
 \*(PU\-visningslägen tillgängliga via 4\-vägs\*(CTn ”t”. De visar en förkortad
 sammanfattning som består av dessa element:
@@ -529,10 +532,10 @@ sammanfattning som består av dessa element:
 
 .fi
 
-Där: a) är ”användarens” (an + ni) procent; b) är ”systemets” (wy + ha + ma)
-procent; c) är den totala procenten; och d) är en av två visuella grafer av
-dessa representationer. Sådana grafer avspeglar även separata ”användar”\-
-och ”system”\-delar.
+Där: a) är ”användarens” (an + ni) procent; b) är ”systemets” (wy + ha + ma
++ gäster) procent; c) är den totala procenten; och d) är en av två visuella
+grafer av dessa representationer. Sådana grafer avspeglar även separata
+”användar”\- och ”system”\-delar.
 
 Om \*(CTn ”4” används för att ge mer än två cpu:er per rad kommer resultaten
 ytterligare förkortas och eliminera element a) och b). Dock avspeglas den
@@ -547,16 +550,22 @@ kommandoradsflaggorna ”t” och ”4”.
 .\" ----------------------------------------------------------------------
 Detta avsnitt består av två rader som kan uttrycka värden i kibibyte (KiB)
 till exbibyte (EiB) beroende på skalfaktorn med det interaktiva kommandot
-”E”.
+”E”. Källfälten från filen /proc/meminfo visas i parenteser.
 
-Som standard avspeglar rad 1 \*(MP, klassificerat som:
+Rad 1 avspeglar \*(MP, klassificerat som:
 .nf
-    totalt, fritt, använt och buff/cache
+    totalt         ( MemTotal )
+    fritt          ( MemFree )
+    anv.           ( MemTotal \- MemAvailable )
+    buff/cache     ( Buffers + Cached + SReclaimable )
 .fi
 
 Rad 2 avspeglar huvudsakligen \*(MV, klassificerat som:
 .nf
-    totalt, fritt, använt och tillgängligt (vilket är \*(MP)
+    totalt         ( SwapTotal )
+    fritt          ( SwapFree )
+    anv.           ( SwapTotal \- SwapFree )
+    tillg          ( MemAvailable, vilket är \*(MP )
 .fi
 
 Värdet \fBtillg\fP på rad 2 är en uppskattning av \*(MP tillgängligt för att
@@ -1684,14 +1693,14 @@ Om inte separata\fI prestanda\fP och\fI effektiva\fP kategorier finns har denna
 \ \ \ \fB!\fP\ \ :\fIKombinera\-cpu:er\-läges\fPväxel 
 Denna \*(CT är avsedd för massivt parallella SMP\-miljöer där, även med
 \*(CTn ”4”, inte alla processer kan visas. Med varje tryck på ”!” dubblas
-antalet ytterligare \*(Pu:er som kombineras och därmed reduceras det totala
-antalet \*(Pu\-rader som visas.
+antalet \*(Pu:er som kombineras och därmed reduceras det totala antalet
+\*(Pu\-rader som visas.
 
-Till exempel, med det första trycket på ”!” kmmer en ytterligare \*(Pu
-kombineras och visas som ”0\-1, 2\-3, …” istället för de normala ”%Cpu0,
-%Cpu1, %Cpu2, %Cpu3, …”. Med en andra \*(CT ”!” kombineras två ytterligare
-\*(Pu:er och visas som ”0\-2, 3\-5, …”. Sedan med ett tredje tryck på ”!”,
-kombineras fyra ytterligare \*(Pu:er, och visas som ”0\-4, 5\-9, …”, etc.
+Till exempel, med det första trycket på ”!” kmmer två \*(Pu:er kombineras
+och visas som ”0\-1, 2\-3, …” istället för de normala ”%Cpu0, %Cpu1, %Cpu2,
+%Cpu3, …”. Med en andra \*(CT ”!” kombineras fyra \*(Pu:er och visas som
+”0\-3, 4\-7, …”. Sedan med ett tredje tryck på ”!”, kombineras åtta \*(Pu:er,
+och visas som ”0\-7, 8\-15, …”, etc.
 
 Så fortsätter det tills individuella \*(Pu:er återigen visas och påverkar de
 båda växlarna ”1” och ”4” (en eller flera kolumner). Används kommandot ”=”

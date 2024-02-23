@@ -20,7 +20,7 @@
 pidof \- die Prozesskennung eines laufenden Programms ermitteln
 .SH ÜBERSICHT
 \fBpidof\fP [\fB\-s\fP] [\fB\-c\fP] [\fB\-q\fP] [\fB\-w\fP] [\fB\-x\fP] [\fB\-o\fP
-\fIüberspringen[,überspringen …] …\fP] [\fB\-S\fP \fITrenner\fP] \fIProgramm\fP
+\fIüberspringen[,überspringen …] …\fP] [\fB\-t\fP] [\fB\-S\fP \fITrenner\fP] \fIProgramm\fP
 \fI[\fP\fBProgramm …\fP\fI]\fP
 .SH BESCHREIBUNG
 \fBPidof\fP findet die Prozesskennungen (PIDs) der benannten Programme. Es
@@ -47,6 +47,8 @@ weist \fBpidof\fP an, Prozesse mit der angegebenen PID zu überspringen. Die
 spezielle PID \fB%PPID\fP kann verwendet werden, um den Elternprozess des
 \fBpidof\fP\-Programms zu bezeichnen, also die aufrufende Shell oder das
 Shell\-Skript.
+.IP \fB\-t\fP
+zeigt alle Thread\-IDs anstelle von PIDs an.
 .IP "\fB\-S\fP \fITrenner\fP"
 verwendet den angegebenen \fITrenner\fP zwischen PIDs. Dieser wird nur
 verwendet, wenn für das Programm mehrere PIDs ausgegeben werden. Die Option

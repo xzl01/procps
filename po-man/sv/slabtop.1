@@ -94,6 +94,12 @@ framtiden.
 Statistikhuvudet i \fBslabtop\fP följer hur många byte av skivor som används
 och är inte ett mått på fysiskt minne.  Fältet ”Slab” i filen
 \fI/proc/meminfo\fP följer information om skivors använda fysiska minne.
+.PP
+Kolumnen \fBCACHE\-STRL\fP är inte precis, det är den övre gränsen på minne som
+används av en specifik slab. När ett system som använder slub (det
+vanligaste fallet) är under högt minnestryck finns det reserver för
+slab\-ordrar, vilket betyder att ”sidor per slab” inte är konstant och kan
+minska.
 .SH UPPHOVSMÄN
 Skrivet av Chris Rivera och Robert Love.
 .PP

@@ -95,6 +95,7 @@ static void __attribute__ ((__noreturn__))
 	fputs(USAGE_OPTIONS, out);
 	fputs(_("  -b, --beep             beep if command has a non-zero exit\n"), out);
 	fputs(_("  -c, --color            interpret ANSI color and style sequences\n"), out);
+	fputs(_("  -C, --no-color         do not interpret ANSI color and style sequences\n"), out);
 	fputs(_("  -d, --differences[=<permanent>]\n"
                 "                         highlight changes between updates\n"), out);
 	fputs(_("  -e, --errexit          exit if command has a non-zero exit\n"), out);
@@ -435,7 +436,6 @@ wint_t my_getwc(FILE * s)
 	char i[MAX_ENC_BYTES];
 	int byte = 0;
 	int convert;
-	int x;
 	wchar_t rval;
 	while (1) {
 		i[byte] = getc(s);
@@ -446,7 +446,6 @@ wint_t my_getwc(FILE * s)
 		errno = 0;
 		mbtowc(NULL, NULL, 0);
 		convert = mbtowc(&rval, i, byte);
-		x = errno;
 		if (convert > 0) {
 			/* legal conversion */
 			return rval;
@@ -821,15 +820,20 @@ int main(int argc, char *argv[])
 	char **command_argv;
 	int command_length = 0;	/* not including final \0 */
 	watch_usec_t last_run = 0;
-	watch_usec_t next_loop;	/* next loop time in us, used for precise time
-				 * keeping only */
+	watch_usec_t next_loop = 0;	/* next loop time in us, used for precise time
+	                           	 * keeping only */
 #ifdef WITH_WATCH8BIT
 	wchar_t *wcommand = NULL;
 	int wcommand_characters = 0;	/* not including final \0 */
 #endif	/* WITH_WATCH8BIT */
 
+#ifdef WITH_COLORWATCH
+        flags |= WATCH_COLOR;
+#endif /* WITH_COLORWATCH */
+
 	static struct option longopts[] = {
 		{"color", no_argument, 0, 'c'},
+		{"no-color", no_argument, 0, 'C'},
 		{"differences", optional_argument, 0, 'd'},
 		{"help", no_argument, 0, 'h'},
 		{"interval", required_argument, 0, 'n'},
@@ -859,7 +863,7 @@ int main(int argc, char *argv[])
 		interval = strtod_nol_or_err(interval_string, _("Could not parse interval from WATCH_INTERVAL"));
 
 	while ((optc =
-		getopt_long(argc, argv, "+bced::ghq:n:prtwvx", longopts, (int *)0))
+		getopt_long(argc, argv, "+bCced::ghq:n:prtwvx", longopts, (int *)0))
 	       != EOF) {
 		switch (optc) {
 		case 'b':
@@ -867,6 +871,9 @@ int main(int argc, char *argv[])
 			break;
 		case 'c':
 			flags |= WATCH_COLOR;
+			break;
+		case 'C':
+			flags &= ~WATCH_COLOR;
 			break;
 		case 'd':
 			flags |= WATCH_DIFF;

@@ -16,7 +16,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH SYSCTL 8 2023\-01\-16 procps\-ng Systemadministration
+.TH SYSCTL 8 2023\-08\-19 procps\-ng Systemadministration
 .SH NAMN
 sysctl — konfigurera kärnparametrar under gång
 .SH SYNOPSIS
@@ -55,8 +55,8 @@ skal som har programmerbar komplettering.
 Använd denna flagga för att inte visa värdena som sätts på standard ut.
 .TP 
 \fB\-w\fP, \fB\-\-write\fP
-Använd denna flagga när alla argument föreskriver att en nyckel skall
-sättas.
+Tvinga alla argument att vara skrivargument och skriv ett fel om de inte kan
+tolkas på det sättet.
 .TP 
 \fB\-p\fP[\fIFIL\fP], \fB\-\-load\fP[=\fIFIL\fP]
 Läs in \fBsysctl\fP\-inställningar från filen som anges eller
@@ -166,7 +166,7 @@ echo 256 > /proc/sys/net/ipv6/neigh/eth0/base_reachable_time
 .br
 \fI/etc/sysctl.conf\fP
 .SH "SE ÄVEN"
-\fBsysctl.conf\fP(5)  \fBregex\fP(7)
+\fBproc\fP(5), \fBsysctl.conf\fP(5), \fBregex\fP(7)
 .SH UPPHOVSMAN
 .UR staikos@0wned.org
 George Staikos
